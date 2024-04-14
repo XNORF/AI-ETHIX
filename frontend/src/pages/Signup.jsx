@@ -9,7 +9,7 @@ const boxStyle = {
 };
 
 const textFieldStyle = {
-    width: "80%",
+    width: "100%",
     bgcolor: "#D9D9D9",
     borderRadius: 2,
     px: 1,
@@ -28,43 +28,43 @@ const Signup = () => {
                         Signup
                     </Typography>
                     <Grid container sx={{ mt: 5 }}>
-                        <Grid item md={5}>
+                        <Grid item md={5} sm={12}>
                             <Typography variant="h3" sx={{ ml: 10 }}>
                                 Username
                             </Typography>
                         </Grid>
 
-                        <Grid item md={7}>
+                        <Grid item md={5} sm={12}>
                             <TextField variant="standard" sx={textFieldStyle} placeholder="Type your username" />
                         </Grid>
                     </Grid>
 
                     <Grid container sx={{ mt: 3 }}>
-                        <Grid item md={5}>
+                        <Grid item md={5} sm={12}>
                             <Typography variant="h3" sx={{ ml: 10 }}>
                                 Email
                             </Typography>
                         </Grid>
 
-                        <Grid item md={7}>
+                        <Grid item md={5} sm={12}>
                             <TextField variant="standard" sx={textFieldStyle} placeholder="Type your email" />
                         </Grid>
                     </Grid>
                     <Grid container sx={{ mt: 3 }}>
-                        <Grid item md={5}>
+                        <Grid item md={5} sm={12}>
                             <Typography variant="h3" sx={{ ml: 10 }}>
                                 Password
                             </Typography>
                         </Grid>
 
-                        <Grid item md={7}>
+                        <Grid item md={5} sm={12}>
                             <TextField variant="standard" sx={textFieldStyle} placeholder="Type your password" type="password" />
                         </Grid>
                     </Grid>
                     <Grid container sx={{ my: 3 }}>
-                        <Grid item md={5}></Grid>
+                        <Grid item md={5} sm={12}></Grid>
 
-                        <Grid item md={7}>
+                        <Grid item md={5} sm={12}>
                             <TextField variant="standard" sx={textFieldStyle} placeholder="Confirm your password" type="password" />
                         </Grid>
                     </Grid>
@@ -74,7 +74,7 @@ const Signup = () => {
                         </Button>
                         <br />
                         <Link to="/login">
-                            <Typography variant="button">Login</Typography>
+                            <Typography variant="subtitle1">Login</Typography>
                         </Link>
                     </Box>
                 </Box>
