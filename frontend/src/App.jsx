@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Container, createMuiTheme, ThemeProvider } from "@mui/material";
+import { Container, createTheme, ThemeProvider } from "@mui/material";
 
 //PAGES & COMPONENTS
-//pages
+//user pages
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -19,7 +19,7 @@ import Quizzes from "./pages/Quizzes";
 //components
 import Navbar from "./components/Navbar";
 
-const theme = createMuiTheme({
+const theme = createTheme({
     typography: {
         h1: {
             fontFamily: "Outfit",
@@ -34,7 +34,7 @@ const theme = createMuiTheme({
         h3: {
             fontFamily: "Outfit",
             fontWeight: 400,
-            fontSize: "30px",
+            fontSize: "27px",
         },
         body1: {
             fontFamily: "Roboto",
@@ -42,6 +42,11 @@ const theme = createMuiTheme({
             fontSize: "20px",
         },
         button: {
+            fontFamily: "Outfit",
+            fontWeight: 400,
+            fontSize: "15px",
+        },
+        subtitle1: {
             fontFamily: "Outfit",
             fontWeight: 400,
             fontSize: "15px",
@@ -56,6 +61,7 @@ function App() {
                 <Container>
                     <BrowserRouter>
                         <Navbar />
+
                         <div className="pages">
                             <Routes>
                                 <Route path="/" element={<Home />} />
