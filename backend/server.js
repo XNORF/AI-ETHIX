@@ -1,7 +1,7 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const testRoute = require("./routes/testRoute");
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+import userRoute from "./routes/userRoute.js";
 
 //express app
 const app = express();
@@ -15,9 +15,9 @@ app.use((req, res, next) => {
 });
 
 //routes
-app.use("/test", testRoute);
+app.use("/user", userRoute);
 
 //listen for requests
 app.listen(process.env.PORT, () => {
-    console.log("Hello World");
+    console.log("Server is running");
 });

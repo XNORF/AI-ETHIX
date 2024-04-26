@@ -19,6 +19,9 @@ import Quizzes from "./pages/Quizzes";
 //components
 import Navbar from "./components/Navbar";
 
+//contexts
+import { AuthProvider } from "./contexts/AuthProvider";
+
 const theme = createTheme({
     typography: {
         h1: {
@@ -60,24 +63,25 @@ function App() {
             <ThemeProvider theme={theme}>
                 <Container>
                     <BrowserRouter>
-                        <Navbar />
-
-                        <div className="pages">
-                            <Routes>
-                                <Route path="/" element={<Home />} />
-                                <Route path="/signup" element={<Signup />} />
-                                <Route path="/login" element={<Login />} />
-                                <Route path="/profile" element={<Profile />} />
-                                <Route path="/forums/:id" element={<Forum />} />
-                                <Route path="/forums" element={<Forums />} />
-                                <Route path="/guidelines/:id" element={<Guideline />} />
-                                <Route path="/guidelines" element={<Guidelines />} />
-                                <Route path="/resources/:id" element={<Resource />} />
-                                <Route path="/resources" element={<Resources />} />
-                                <Route path="/quiz/:id" element={<Quiz />} />
-                                <Route path="/quiz" element={<Quizzes />} />
-                            </Routes>
-                        </div>
+                        <AuthProvider>
+                            <Navbar />
+                            <div className="pages">
+                                <Routes>
+                                    <Route path="/" element={<Home />} />
+                                    <Route path="/signup" element={<Signup />} />
+                                    <Route path="/login" element={<Login />} />
+                                    <Route path="/profile" element={<Profile />} />
+                                    <Route path="/forums/:id" element={<Forum />} />
+                                    <Route path="/forums" element={<Forums />} />
+                                    <Route path="/guidelines/:id" element={<Guideline />} />
+                                    <Route path="/guidelines" element={<Guidelines />} />
+                                    <Route path="/resources/:id" element={<Resource />} />
+                                    <Route path="/resources" element={<Resources />} />
+                                    <Route path="/quiz/:id" element={<Quiz />} />
+                                    <Route path="/quiz" element={<Quizzes />} />
+                                </Routes>
+                            </div>
+                        </AuthProvider>
                     </BrowserRouter>
                 </Container>
             </ThemeProvider>
