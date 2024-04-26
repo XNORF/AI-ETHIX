@@ -1,8 +1,10 @@
+import Content from "../components/Content";
+
 const Resource = () => {
     //RETURN THE HTML
     return (
         <div className="Resource">
-            <h2>Resource</h2>
+            <Content />
         </div>
     );
 };
