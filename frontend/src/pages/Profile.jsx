@@ -1,5 +1,8 @@
 import { Typography, Button, Box, TextField, Grid, Avatar, IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthProvider";
+import { auth } from "../configs/firebase";
+import { useState, useEffect } from "react";
 
 const boxStyle = {
     width: "55%",
@@ -25,20 +28,39 @@ const disabledTextFieldStyle = {
     px: 1,
 };
 const Profile = () => {
+    const { currentUser, userLoggedIn, loading } = useAuth();
+    const [username, setUsername] = useState("");
+
+    //RUN ONCE PAGE LOADED
+    useEffect(() => {
+        const fetchProfile = async () => {
+            const url = import.meta.env.VITE_URL;
+            const response = await fetch(url + "user/" + currentUser.uid);
+            const json = await response.json();
+            if (response.ok) {
+                setUsername(json.userData.username);
+            }
+        };
+
+        fetchProfile();
+    }, [currentUser]);
+
     //RETURN THE HTML
     return (
         <div className="Profile">
+            {!loading && !userLoggedIn && <Navigate to={"/login"} replace={true} />}
+
             <Grid display="flex" justifyContent="center" alignItems="center" sx={{ mt: 5 }}>
                 <label htmlFor="contained-button-file">
                     <IconButton>
-                        <Avatar sx={{ width: "150px", height: "150px" }} />
+                        <Avatar sx={{ width: "150px", height: "150px" }} src={userLoggedIn ? currentUser.photoURL : "null"} />
                     </IconButton>
                 </label>
             </Grid>
             <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
                 <Box sx={boxStyle}>
                     <Typography variant="h2" sx={{ mt: 2 }} align="center">
-                        Login
+                        Profile
                     </Typography>
 
                     <Grid container sx={{ mt: 3 }}>
@@ -49,7 +71,7 @@ const Profile = () => {
                         </Grid>
 
                         <Grid item md={5} sm={12}>
-                            <TextField variant="standard" sx={disabledTextFieldStyle} disabled />
+                            <TextField variant="standard" sx={disabledTextFieldStyle} disabled value={userLoggedIn ? currentUser.email : "null"} />
                         </Grid>
                     </Grid>
                     <Grid container sx={{ mt: 3 }}>
@@ -60,7 +82,7 @@ const Profile = () => {
                         </Grid>
 
                         <Grid item md={5} sm={12}>
-                            <TextField variant="standard" sx={textFieldStyle} placeholder="Your username" />
+                            <TextField variant="standard" sx={textFieldStyle} placeholder="Your username" value={username} onChange={(e) => setUsername(e.target.value)} />
                         </Grid>
                     </Grid>
                     <Grid container sx={{ mt: 3 }}>
