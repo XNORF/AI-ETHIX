@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Typography, Button, Box } from "@mui/material";
+import { useAuth } from "../contexts/AuthProvider";
 
 const Home = () => {
+    const { currentUser, userLoggedIn } = useAuth();
+
     /*const [listOfTests, setListOfTest] = useState(null);
 
     //RUN ONCE PAGE LOADED
@@ -33,11 +36,19 @@ const Home = () => {
                         Explore ethical AI development with us. Dive into resources, join discussions, and access guidelines for responsible AI development. Shape a future where AI benefits everyone responsibly.
                     </Typography>
                 </Box>
-                <Link to="/signup" style={{ textDecoration: "none" }}>
-                    <Button variant="contained" sx={{ mt: 5 }} align="center">
-                        <Typography variant="button">Get Started</Typography>
-                    </Button>
-                </Link>
+                {userLoggedIn
+                    ? [
+                          <Button variant="contained" sx={{ mt: 5 }} align="center">
+                              <Typography variant="button">Welcome {currentUser.displayName}</Typography>
+                          </Button>,
+                      ]
+                    : [
+                          <Link to="/signup" style={{ textDecoration: "none" }}>
+                              <Button variant="contained" sx={{ mt: 5 }} align="center">
+                                  <Typography variant="button">Get Started</Typography>
+                              </Button>
+                          </Link>,
+                      ]}
             </Box>
             <Box>
                 <Typography variant="h2" sx={{ mt: 15 }} align="center">
