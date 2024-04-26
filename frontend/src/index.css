@@ -2,7 +2,7 @@
 :root {
     font-family: Outfit, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     color-scheme: light dark;
-    color: aliceblue;
+    color: rgb(214, 223, 231);
     background-color: #1b1c20;
 }
 
@@ -15,7 +15,6 @@ a {
     position: sticky;
     top: 0;
     background-color: #1b1c20;
-    color: aliceblue;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,14 +31,14 @@ a {
     gap: 1rem;
 }
 .nav a {
-    color: aliceblue;
+    color: rgb(214, 223, 231);
 }
 .nav li:hover {
     background-color: rgba(42, 42, 42, 0.42);
     border-radius: 10px;
 }
 .nav p {
-    color: aliceblue;
+    color: rgb(214, 223, 231);
     margin-right: 10px;
     margin-left: 10px;
 }
