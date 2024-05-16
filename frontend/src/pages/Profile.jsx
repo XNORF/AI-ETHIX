@@ -38,7 +38,7 @@ const Profile = () => {
             const response = await fetch(url + "user/" + currentUser.uid);
             const json = await response.json();
             if (response.ok) {
-                setUsername(json.userData.username);
+                setUsername(json.username);
             }
         };
 
