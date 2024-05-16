@@ -17,7 +17,21 @@ const getUserData = async (req, res) => {
         if (!userData) {
             res.status(404).json({ msg: "User not found" });
         } else {
-            res.status(200).json({ userData });
+            res.status(200).json(userData);
+        }
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+
+const getUsersData = async (req, res) => {
+    try {
+        const user = new User();
+        const usersData = await user.getUsers();
+        if (!usersData) {
+            res.status(404).json({ msg: "No user found" });
+        } else {
+            res.status(200).json(usersData);
         }
     } catch (error) {
         res.status(400).json({ msg: error.message });
@@ -26,4 +40,4 @@ const getUserData = async (req, res) => {
 const updateUserData = async (req, res) => {};
 const deleteUser = async (req, res) => {};
 
-export { createNewUser, getUserData, updateUserData, deleteUser };
+export { createNewUser, getUserData, getUsersData, updateUserData, deleteUser };

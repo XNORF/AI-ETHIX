@@ -1,5 +1,5 @@
 import { db } from "../config/firebase.js";
-import { getDoc, getDocs, addDoc, deleteDoc, updateDoc, setDoc, doc, onSnapshot, query, where, orderBy, serverTimestamp } from "firebase/firestore";
+import { getDoc, getDocs, collection, addDoc, deleteDoc, updateDoc, setDoc, doc, onSnapshot, query, where, orderBy, serverTimestamp } from "firebase/firestore";
 
 export default class User {
     constructor() {}
@@ -20,7 +20,14 @@ export default class User {
     }
 
     //GET ALL USER
-    getUsers() {}
+    async getUsers() {
+        const docs = [];
+        let snapshot = await getDocs(collection(db, "users"));
+        snapshot.forEach((doc) => {
+            docs.push(doc.data());
+        });
+        return docs;
+    }
 
     updateUser(userID, userJSON) {}
 
