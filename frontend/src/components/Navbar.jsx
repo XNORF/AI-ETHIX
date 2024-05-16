@@ -54,10 +54,13 @@ const Navbar = () => {
                     </Link>
                 </Stack>
                 <Stack direction="row" spacing={1}>
-                    <IconButton onClick={handleOpen}>
-                        <ChatBubbleIcon sx={{ color: "white", width: 24, height: 24 }} />
-                    </IconButton>
-
+                    {userLoggedIn
+                        ? [
+                              <IconButton onClick={handleOpen}>
+                                  <ChatBubbleIcon sx={{ color: "white", width: 24, height: 24 }} />
+                              </IconButton>,
+                          ]
+                        : []}
                     <IconButton onClick={menuClick} aria-controls={open ? "account-menu" : undefined} aria-haspopup="true" aria-expanded={open ? "true" : undefined}>
                         <Avatar sx={{ width: 24, height: 24 }} src={userLoggedIn ? currentUser.photoURL : "null"} />
                     </IconButton>
