@@ -1,4 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { useAuth } from "../contexts/AuthProvider";
 
 const boxStyle = {
     position: "absolute",
@@ -21,13 +23,42 @@ const textFieldStyle = {
 };
 
 const Feedback = () => {
+    const { currentUser } = useAuth();
+
+    const [feedback, setFeedback] = useState("");
+
+    const addFeedbackDB = async (feedbackJSON) => {
+        const url = import.meta.env.VITE_URL;
+        const response = await fetch(url + "feedback/new", {
+            method: "POST",
+            body: JSON.stringify(feedbackJSON),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const json = await response.json();
+        if (!response.ok) {
+            console.log("Error:" + JSON.stringify(json));
+        }
+        if (response.ok) {
+            console.log("ok");
+        }
+    };
+
+    const handleFeedback = async (e) => {
+        e.preventDefault();
+        if (feedback != "") {
+            addFeedbackDB({ userID: currentUser.uid, feedback });
+        }
+    };
+
     //RETURN THE HTML
     return (
         <div>
             <Box sx={boxStyle} className="feedback">
                 <Typography variant="h2">Feedback</Typography>
-                <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={6} placeholder="Feedback" variant="filled" required />
-                <Button variant="contained" sx={{ mb: 2 }}>
+                <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={6} placeholder="Feedback" variant="filled" required onChange={(e) => setFeedback(e.target.value)} value={feedback} />
+                <Button variant="contained" onClick={handleFeedback} sx={{ mb: 2 }}>
                     <Typography variant="button">Submit</Typography>
                 </Button>
             </Box>
