@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import userRoute from "./routes/userRoute.js";
 import feedbackRoute from "./routes/feedbackRoute.js";
+import contentRoute from "./routes/contentRoute.js";
+import forumRoute from "./routes/forumRoute.js";
 
 //express app
 const app = express();
@@ -18,6 +20,8 @@ app.use((req, res, next) => {
 //routes
 app.use("/user", userRoute);
 app.use("/feedback", feedbackRoute);
+app.use("/content", contentRoute);
+app.use("/forum", forumRoute);
 
 //listen for requests
 app.listen(process.env.PORT, () => {

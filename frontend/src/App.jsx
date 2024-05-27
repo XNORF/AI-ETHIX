@@ -37,12 +37,12 @@ const theme = createTheme({
         h3: {
             fontFamily: "Outfit",
             fontWeight: 400,
-            fontSize: "27px",
+            fontSize: "24px",
         },
         body1: {
             fontFamily: "Roboto",
             fontWeight: 400,
-            fontSize: "20px",
+            fontSize: "18px",
         },
         button: {
             fontFamily: "Outfit",
