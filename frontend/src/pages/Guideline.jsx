@@ -1,8 +1,13 @@
+import Content from "../components/Content";
+import { useParams } from "react-router-dom";
+
 const Guideline = () => {
+    const { id } = useParams();
+
     //RETURN THE HTML
     return (
         <div className="Guideline">
-            <h2>Guideline</h2>
+            <Content id={id} type="guideline" />
         </div>
     );
 };
