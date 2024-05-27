@@ -15,8 +15,8 @@ export default class User {
     }
 
     //GET ONE USER
-    async getUser(userID) {
-        return await getDoc(doc(db, "users", userID));
+    async getUser(id) {
+        return await getDoc(doc(db, "users", id));
     }
 
     //GET ALL USER
@@ -29,7 +29,5 @@ export default class User {
         return docs;
     }
 
-    updateUser(userID, userJSON) {}
-
-    deleteUser(userID) {}
+    updateUser(id, userJSON) {}
 }
