@@ -1,5 +1,5 @@
 import { Typography, Button, Box, TextField, Grid, Stack, Skeleton } from "@mui/material";
-import List from "../components/List";
+import ContentList from "../components/ContentList";
 import { useState, useEffect } from "react";
 
 const skeletonStyle = {
@@ -34,7 +34,7 @@ const Resources = () => {
             <Typography variant="body1" sx={{ my: 2 }} align="center">
                 The educational resources in AI-Ethix offer concise materials on AI ethics, teaching software engineering students about fairness, transparency, and responsible AI development.
             </Typography>
-            {resources.length > 0 ? resources.map((resource) => <List data={resource} type="resources" />) : [<Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />]}
+            {resources.length > 0 ? resources.map((resource) => <ContentList data={resource} type="resources" />) : [<Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />]}
         </div>
     );
 };

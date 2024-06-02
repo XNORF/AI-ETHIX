@@ -30,6 +30,7 @@ const disabledTextFieldStyle = {
 const Profile = () => {
     const { currentUser, userLoggedIn, loading } = useAuth();
     const [username, setUsername] = useState("");
+    const [img, setImg] = useState("");
 
     //RUN ONCE PAGE LOADED
     useEffect(() => {
@@ -52,7 +53,9 @@ const Profile = () => {
 
             <Grid display="flex" justifyContent="center" alignItems="center" sx={{ mt: 5 }}>
                 <label htmlFor="contained-button-file">
-                    <IconButton>
+                    <IconButton component="label">
+                        <input type="file" hidden accept="image/*" />
+
                         <Avatar sx={{ width: "150px", height: "150px" }} src={userLoggedIn ? currentUser.photoURL : "null"} />
                     </IconButton>
                 </label>

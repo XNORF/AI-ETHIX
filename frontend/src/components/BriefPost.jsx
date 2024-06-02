@@ -27,7 +27,7 @@ const Post = (props) => {
                             </Grid>
                         </Grid>
                         <Grid item md={12} sm={12} sx={{ my: 1 }} align="center">
-                            {data.attachment && <img style={{ height: "200px", width: "95%", objectFit: "cover", objectPosition: "0 0" }} src="https://img.freepik.com/free-vector/dark-blue-abstract-banner-half-tone-style-design_1017-39807.jpg" />}
+                            {data.attachment && <img style={{ height: "200px", width: "95%", objectFit: "cover", objectPosition: "0 0" }} src={data.attachment} alt="Attachment" />}
                         </Grid>
                         <Grid item md={12} sm={12} sx={{ mx: 3, my: 1 }} align="left">
                             <Grid container>

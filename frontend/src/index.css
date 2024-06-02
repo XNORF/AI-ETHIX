@@ -49,3 +49,15 @@ a {
     flex-direction: column;
     align-items: center;
 }
+.reply {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+.post {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}

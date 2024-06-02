@@ -1,5 +1,5 @@
 import { Typography, Button, Box, TextField, Grid, Stack, Skeleton } from "@mui/material";
-import List from "../components/List";
+import ContentList from "../components/ContentList";
 import { useState, useEffect } from "react";
 
 const skeletonStyle = {
@@ -35,7 +35,7 @@ const Guidelines = () => {
             <Typography variant="body1" sx={{ my: 2 }} align="center">
                 Ethical guidelines ensure responsible AI by promoting transparency, fairness, accountability, and privacy protection to prevent bias and support positive societal impact.
             </Typography>
-            {guidelines.length > 0 ? guidelines.map((guideline) => <List data={guideline} type="guidelines" />) : [<Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />]}
+            {guidelines.length > 0 ? guidelines.map((guideline) => <ContentList data={guideline} type="guidelines" />) : [<Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />]}
         </div>
     );
 };

@@ -6,24 +6,6 @@ import { useAuth } from "../contexts/AuthProvider";
 const Home = () => {
     const { currentUser, userLoggedIn } = useAuth();
 
-    /*const [listOfTests, setListOfTest] = useState(null);
-
-    //RUN ONCE PAGE LOADED
-    useEffect(() => {
-        const fetchTest = async () => {
-            const url = import.meta.env.VITE_URL;
-            const response = await fetch(url + "test");
-            const json = await response.json();
-            if (response.ok) {
-                setListOfTest(json);
-            }
-        };
-
-        fetchTest();
-    }, []);
-            <div className="testDisplay">{listOfTests && listOfTests.map((test) => <h1 id="test">msg: {test.msg}</h1>)}</div>
-
-*/
     //RETURN THE HTML
     return (
         <div className="Home">
