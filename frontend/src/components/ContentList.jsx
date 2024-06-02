@@ -7,11 +7,11 @@ const boxStyle = {
     boxShadow: 5,
 };
 
-const List = (props) => {
+const ContentList = (props) => {
     const data = props.data;
     //RETURN THE HTML
     return (
-        <div className="List" id={data.id}>
+        <div className="ContentList" id={data.id}>
             <Link to={"/" + props.type + "/" + data.id} style={{ textDecoration: "none", color: "inherit" }}>
                 <Box sx={boxStyle}>
                     <Grid container sx={{ my: 2, mx: 3 }}>
@@ -35,4 +35,4 @@ const List = (props) => {
         </div>
     );
 };
-export default List;
+export default ContentList;
