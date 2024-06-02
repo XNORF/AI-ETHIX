@@ -5,7 +5,18 @@ const createNewPost = async (req, res) => {
     try {
         const post = new Post();
         post.createPost(postJSON);
-        res.status(200).json({ msg: "Successful user registration" });
+        res.status(200).json({ msg: "Successful create new post" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+
+const uploadAttachment = async (req, res) => {
+    const attachment = req.body;
+    try {
+        const post = new Post();
+        const attachmentURL = await post.uploadAttachment(attachment);
+        res.status(200).json({ attachmentURL });
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }
@@ -44,4 +55,4 @@ const getPostsData = async (req, res) => {
 const updatePostData = async (req, res) => {};
 const deletePost = async (req, res) => {};
 
-export { createNewPost, getPostData, getPostsData, updatePostData, deletePost };
+export { createNewPost, getPostData, getPostsData, updatePostData, deletePost, uploadAttachment };

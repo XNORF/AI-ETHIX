@@ -8,7 +8,6 @@ const boxStyle = {
 
 const DetailedPost = (props) => {
     const data = props.data;
-    console.log(data);
     //RETURN THE HTML
     return (
         <div className="DetailedPost" id={data.id}>
