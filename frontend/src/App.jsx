@@ -16,6 +16,11 @@ import Resources from "./pages/Resources";
 import Quiz from "./pages/Quiz";
 import Quizzes from "./pages/Quizzes";
 
+//admin pages
+import AdminFeedback from "./pages/admin/AdminFeedback";
+import ContentManagement from "./pages/admin/ContentManagement";
+import UserManagement from "./pages/admin/UserManagement";
+
 //components
 import Navbar from "./components/Navbar";
 
@@ -79,6 +84,9 @@ function App() {
                                     <Route path="/resources" element={<Resources />} />
                                     <Route path="/quiz/:id" element={<Quiz />} />
                                     <Route path="/quiz" element={<Quizzes />} />
+                                    <Route path="/admin/feedback" element={<AdminFeedback />} />
+                                    <Route path="/admin/content" element={<ContentManagement />} />
+                                    <Route path="/admin/users" element={<UserManagement />} />
                                 </Routes>
                             </div>
                         </AuthProvider>

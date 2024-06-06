@@ -31,13 +31,24 @@ const getUsersData = async (req, res) => {
         if (!usersData) {
             res.status(404).json({ msg: "No user found" });
         } else {
-            res.status(200).json(usersData);
+            res.status(200).json({ usersData });
         }
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }
 };
-const updateUserData = async (req, res) => {};
+const updateUserData = async (req, res) => {
+    const { id } = req.params;
+    const userJSON = req.body;
+
+    try {
+        const user = new User();
+        user.updateUser(id, userJSON);
+        res.status(200).json({ msg: "User Updated" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
 const deleteUser = async (req, res) => {};
 
 export { createNewUser, getUserData, getUsersData, updateUserData, deleteUser };

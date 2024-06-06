@@ -3,6 +3,8 @@ import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthProvider";
 import { auth } from "../configs/firebase";
 import { useState, useEffect } from "react";
+import { updateProfile, sendPasswordResetEmail } from "firebase/auth";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 const boxStyle = {
     width: "55%",
@@ -30,6 +32,8 @@ const disabledTextFieldStyle = {
 const Profile = () => {
     const { currentUser, userLoggedIn, loading } = useAuth();
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [type, setType] = useState("");
     const [img, setImg] = useState("");
 
     //RUN ONCE PAGE LOADED
@@ -40,11 +44,47 @@ const Profile = () => {
             const json = await response.json();
             if (response.ok) {
                 setUsername(json.username);
+                setEmail(json.email);
+                setType(json.type);
             }
         };
-
-        fetchProfile();
+        if (userLoggedIn) {
+            fetchProfile();
+        }
     }, [currentUser]);
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        const url = import.meta.env.VITE_URL;
+        const response = await fetch(url + "user/update/" + currentUser.uid, {
+            method: "POST",
+            body: JSON.stringify({
+                username: username,
+                type: type,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const json = await response.json();
+        if (!response.ok) {
+            console.log("Error:" + JSON.stringify(json));
+        }
+        if (response.ok) {
+            updateProfile(auth.currentUser, {
+                displayName: username,
+            }).then(() => {
+                alert("Profile updated successfully");
+                window.location.reload();
+            });
+        }
+    };
+    const handleResetPasswords = () => {
+        sendPasswordResetEmail(auth, email).then(() => {
+            console.log("Sent password reset");
+            alert("Password reset sent to email");
+        });
+    };
 
     //RETURN THE HTML
     return (
@@ -65,7 +105,6 @@ const Profile = () => {
                     <Typography variant="h2" sx={{ mt: 2 }} align="center">
                         Profile
                     </Typography>
-
                     <Grid container sx={{ mt: 3 }}>
                         <Grid item md={5} sm={12}>
                             <Typography variant="h3" sx={{ ml: 10 }}>
@@ -74,7 +113,7 @@ const Profile = () => {
                         </Grid>
 
                         <Grid item md={5} sm={12}>
-                            <TextField variant="standard" sx={disabledTextFieldStyle} disabled value={userLoggedIn ? currentUser.email : "null"} />
+                            <TextField variant="standard" sx={disabledTextFieldStyle} disabled value={userLoggedIn ? email : "null"} />
                         </Grid>
                     </Grid>
                     <Grid container sx={{ mt: 3 }}>
@@ -91,39 +130,19 @@ const Profile = () => {
                     <Grid container sx={{ mt: 3 }}>
                         <Grid item md={5} sm={12}>
                             <Typography variant="h3" sx={{ ml: 10 }}>
-                                Password
+                                Reset Password
                             </Typography>
                         </Grid>
 
                         <Grid item md={5} sm={12}>
-                            <TextField variant="standard" sx={textFieldStyle} placeholder="Your password" type="password" />
+                            <Button variant="contained" onClick={handleResetPasswords}>
+                                <Typography variant="button">Change</Typography>
+                            </Button>
                         </Grid>
                     </Grid>
-                    <Grid container sx={{ mt: 3 }}>
-                        <Grid item md={5} sm={12}>
-                            <Typography variant="h3" sx={{ ml: 10 }}>
-                                New
-                            </Typography>
-                        </Grid>
-
-                        <Grid item md={5} sm={12}>
-                            <TextField variant="standard" sx={textFieldStyle} placeholder="New password" type="password" />
-                        </Grid>
-                    </Grid>
-                    <Grid container sx={{ mt: 3 }}>
-                        <Grid item md={5} sm={12}>
-                            <Typography variant="h3" sx={{ ml: 10 }}>
-                                Confirm
-                            </Typography>
-                        </Grid>
-
-                        <Grid item md={5} sm={12}>
-                            <TextField variant="standard" sx={textFieldStyle} placeholder="Confirm password" type="password" />
-                        </Grid>
-                    </Grid>
-                    <Grid container sx={{ mt: 1, mb: 3 }}></Grid>
+                    ,<Grid container sx={{ mt: 1, mb: 3 }}></Grid>,
                     <Box textAlign="center" sx={{ mb: 3 }}>
-                        <Button variant="contained" sx={{ my: 1 }}>
+                        <Button variant="contained" sx={{ my: 1 }} onClick={handleUpdate}>
                             <Typography variant="button">Update</Typography>
                         </Button>
                     </Box>

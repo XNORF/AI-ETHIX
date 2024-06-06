@@ -11,6 +11,7 @@ const Content = (props) => {
     const [username, setUsername] = useState("");
     const [datetime, setDateTime] = useState("");
     const [content, setContent] = useState("");
+    const [banner, setBanner] = useState("");
     const [found, setFound] = useState(true);
 
     //RUN ONCE PAGE LOADED
@@ -27,6 +28,7 @@ const Content = (props) => {
                 setSource(json.source);
                 setDateTime(json.datetime);
                 setContent(json.content);
+                setBanner(json.banner);
             } else {
                 setFound(false);
             }
@@ -43,6 +45,7 @@ const Content = (props) => {
                 setSource(json.source);
                 setDateTime(json.datetime);
                 setContent(json.content);
+                setBanner(json.banner);
             } else {
                 setFound(false);
             }
@@ -54,7 +57,6 @@ const Content = (props) => {
         }
     }, []);
 
-    const image = true;
     //RETURN THE HTML
     return (
         <div className="content">
@@ -78,7 +80,7 @@ const Content = (props) => {
                     <Typography variant="body1">{datetime}</Typography>
                 </Stack>
 
-                {image ? <img style={{ height: "200px", width: "100%", objectFit: "cover", objectPosition: "0 0" }} src="https://img.freepik.com/free-vector/dark-blue-abstract-banner-half-tone-style-design_1017-39807.jpg" /> : <Skeleton animation="wave" variant="rectangular" height={200} />}
+                {banner ? <img style={{ height: "200px", width: "100%", objectFit: "cover", objectPosition: "0 0" }} src={banner} /> : <Skeleton animation="wave" variant="rectangular" height={200} />}
                 <Typography variant="body1" align="justify" sx={{ mt: 5 }} style={{ wordWrap: "break-word" }}>
                     {content}
                 </Typography>

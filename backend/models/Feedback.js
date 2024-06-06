@@ -5,11 +5,12 @@ export default class Feedback {
     constructor() {}
 
     async createFeedback(feedbackJSON) {
-        const { userID, feedback } = feedbackJSON;
+        const { username, userID, feedback } = feedbackJSON;
         const date = new Date();
         await addDoc(collection(db, "feedbacks"), {
             feedback: feedback,
             userID: userID,
+            username: username,
             datetime: date.toLocaleString(),
         });
     }

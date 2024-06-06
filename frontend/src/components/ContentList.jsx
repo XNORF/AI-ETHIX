@@ -16,7 +16,7 @@ const ContentList = (props) => {
                 <Box sx={boxStyle}>
                     <Grid container sx={{ my: 2, mx: 3 }}>
                         <Grid item md={2} sm={2} sx={{ my: 1 }}>
-                            {true ? <img style={{ height: "150px", width: "150px", objectFit: "cover", objectPosition: "0 0" }} src="https://img.freepik.com/free-vector/dark-blue-abstract-banner-half-tone-style-design_1017-39807.jpg" /> : <Skeleton animation="wave" variant="rectangular" height={150} width={150} />}
+                            {data.banner ? <img style={{ height: "150px", width: "150px", objectFit: "cover", objectPosition: "center" }} src={data.banner} /> : <Skeleton animation="wave" variant="rectangular" height={150} width={150} />}
                         </Grid>
                         <Grid item md={9} sm={9} sx={{ my: 3 }}>
                             <Grid container>

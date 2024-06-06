@@ -29,5 +29,10 @@ export default class User {
         return docs;
     }
 
-    updateUser(id, userJSON) {}
+    async updateUser(id, userJSON) {
+        updateDoc(doc(db, "users", id), {
+            username: userJSON.username,
+            type: userJSON.type,
+        });
+    }
 }

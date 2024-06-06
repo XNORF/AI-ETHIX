@@ -102,7 +102,7 @@ const Forum = () => {
                     </Button>
                 </Box>
                 <DetailedPost data={post} type="post" />
-                {comments.length > 0 ? comments.map((comment) => <DetailedPost data={comment} type="comment" />) : [<Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />]}
+                {comments.length > 0 ? comments.map((comment) => <DetailedPost data={comment} type="comment" />) : [<Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />, <Skeleton animation="wave" variant="rectangular" sx={skeletonStyle} />]}
             </div>
 
             <Modal open={open} onClose={handleClose}>

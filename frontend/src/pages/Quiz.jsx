@@ -45,6 +45,7 @@ const Quiz = () => {
         }
         setScore(sc);
         alert("Your score is: " + sc);
+        window.location.href = "/quiz";
     };
 
     //RETURN THE HTML

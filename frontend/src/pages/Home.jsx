@@ -5,6 +5,21 @@ import { useAuth } from "../contexts/AuthProvider";
 
 const Home = () => {
     const { currentUser, userLoggedIn } = useAuth();
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const url = import.meta.env.VITE_URL;
+            const response = await fetch(url + "user/" + currentUser.uid);
+            const json = await response.json();
+            if (response.ok) {
+                setUsername(json.username);
+            }
+        };
+        if (userLoggedIn) {
+            fetchUser();
+        }
+    }, [currentUser]);
 
     //RETURN THE HTML
     return (
@@ -21,7 +36,7 @@ const Home = () => {
                 {userLoggedIn
                     ? [
                           <Button variant="contained" sx={{ mt: 5 }} align="center">
-                              <Typography variant="button">Welcome {currentUser.displayName}</Typography>
+                              <Typography variant="button">Welcome {username}</Typography>
                           </Button>,
                       ]
                     : [

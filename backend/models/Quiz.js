@@ -3,7 +3,11 @@ import { getDoc, getDocs, collection, addDoc, deleteDoc, updateDoc, setDoc, doc,
 
 export default class Quiz {
     constructor() {}
-    async createQuiz(quizJSON) {}
+    async createQuiz(quizJSON) {
+        await addDoc(collection(db, "quizzes"), {
+            questions: quizJSON,
+        });
+    }
     async getQuiz(id) {
         return await getDoc(doc(db, "quizzes", id));
     }

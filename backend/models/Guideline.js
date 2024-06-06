@@ -4,13 +4,14 @@ import { getDoc, getDocs, collection, addDoc, deleteDoc, updateDoc, setDoc, doc,
 export default class Guideline {
     constructor() {}
     async createGuideline(guidelineJSON) {
-        const { userID, title, content, source, author, banner } = guidelineJSON;
+        const { username, userID, title, content, source, author, banner } = guidelineJSON;
         const date = new Date();
         await addDoc(collection(db, "guidelines"), {
             author: author,
             title: title,
             content: content,
             userID: userID,
+            username: username,
             source: source,
             banner: banner,
             datetime: date.toLocaleString(),

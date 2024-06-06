@@ -48,7 +48,7 @@ const Feedback = () => {
     const handleFeedback = async (e) => {
         e.preventDefault();
         if (feedback != "") {
-            addFeedbackDB({ userID: currentUser.uid, feedback });
+            addFeedbackDB({ username: currentUser.displayName, userID: currentUser.uid, feedback });
         }
     };
 

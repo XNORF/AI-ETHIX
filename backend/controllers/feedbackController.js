@@ -31,7 +31,7 @@ const getFeedbacksData = async (req, res) => {
         if (!feedbacksData) {
             res.status(404).json({ msg: "No feedbacks found" });
         } else {
-            res.status(200).json(feedbacksData);
+            res.status(200).json({feedbacksData});
         }
     } catch (error) {
         res.status(400).json({ msg: error.message });

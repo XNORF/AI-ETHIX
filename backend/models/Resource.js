@@ -4,13 +4,14 @@ import { getDoc, getDocs, collection, addDoc, deleteDoc, updateDoc, setDoc, doc,
 export default class Resource {
     constructor() {}
     async createResource(resourceJSON) {
-        const { userID, title, content, source, author, banner } = resourceJSON;
+        const { username, userID, title, content, source, author, banner } = resourceJSON;
         const date = new Date();
         await addDoc(collection(db, "resources"), {
             author: author,
             title: title,
             content: content,
             userID: userID,
+            username: username,
             source: source,
             banner: banner,
             datetime: date.toLocaleString(),
