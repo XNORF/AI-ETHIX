@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import "dotenv/config";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -8,7 +9,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyB0lLvapEDYJyRTnWsBuTBMtP4bayba2Eg",
+    apiKey: process.env.FIREBASE_KEY,
     authDomain: "ai-ethix.firebaseapp.com",
     projectId: "ai-ethix",
     storageBucket: "ai-ethix.appspot.com",

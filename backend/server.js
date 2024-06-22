@@ -6,6 +6,7 @@ import feedbackRoute from "./routes/feedbackRoute.js";
 import contentRoute from "./routes/contentRoute.js";
 import forumRoute from "./routes/forumRoute.js";
 import quizRoute from "./routes/quizRoute.js";
+import chatRoute from "./routes/chatRoute.js";
 
 //express app
 const app = express();
@@ -24,6 +25,7 @@ app.use("/feedback", feedbackRoute);
 app.use("/content", contentRoute);
 app.use("/forum", forumRoute);
 app.use("/quiz", quizRoute);
+app.use("/chat", chatRoute);
 
 //listen for requests
 app.listen(process.env.PORT, () => {
