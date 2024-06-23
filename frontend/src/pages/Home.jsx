@@ -47,11 +47,6 @@ const Home = () => {
                           </Link>,
                       ]}
             </Box>
-            <Box>
-                <Typography variant="h2" sx={{ mt: 15 }} align="center">
-                    Features
-                </Typography>
-            </Box>
         </div>
     );
 };

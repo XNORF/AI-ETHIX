@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import AssistantIcon from "@mui/icons-material/Assistant";
 import { Modal, Avatar, Stack, Menu, MenuItem, IconButton, Button } from "@mui/material";
 import Feedback from "./Feedback";
+import ChatBot from "./ChatBot";
 
 import { useAuth } from "../contexts/AuthProvider";
 import { auth } from "../configs/firebase";
@@ -15,6 +17,9 @@ const Navbar = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [chatbot, setChatbot] = useState(false);
+    const chatbotOpen = () => setChatbot(true);
+    const chatbotClose = () => setChatbot(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorE2, setAnchorE2] = useState(null);
     const menuOpen = Boolean(anchorEl);
@@ -128,6 +133,10 @@ const Navbar = () => {
                     ]}
                 </Stack>
                 <Stack direction="row" spacing={1}>
+                    <IconButton onClick={chatbotOpen}>
+                        <AssistantIcon sx={{ color: "white", width: 24, height: 24 }} />
+                    </IconButton>
+
                     {userLoggedIn
                         ? [
                               <IconButton onClick={handleOpen}>
@@ -191,6 +200,9 @@ const Navbar = () => {
             </div>
             <Modal open={open} onClose={handleClose}>
                 <Feedback />
+            </Modal>
+            <Modal open={chatbot} onClose={chatbotClose}>
+                <ChatBot />
             </Modal>
         </>
     );

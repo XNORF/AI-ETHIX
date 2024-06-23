@@ -32,17 +32,14 @@ export default class Chat {
                 {
                     role: "system",
                     content:
-                        `You are an intelligent, cheerful assistant designed to provide help and answers to user questions using only the following data:
+                        `You are an intelligent, cheerful assistant for a website called "AI-Ethix" which contains guidelines and resources to using and developing ethical artificial intelligence, you are designed to provide help and answers to user questions using only the following data:
                     
                     ---` +
                         JSON.stringify(filteredData) +
                         `---
                     Do include the link to the source of the data when necessary. If you do not know the answer, say 'I don't know'. Do not use any data besides what is in this prompt to answer any questions. Limit your answer to 100 words max.`,
                 },
-                {
-                    role: "user",
-                    content: query,
-                },
+                ...query,
             ],
         });
         return chatCompletion;

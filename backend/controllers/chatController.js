@@ -1,6 +1,6 @@
 import Chat from "../models/Chat.js";
 const chat = async (req, res) => {
-    const { query } = req.body;
+    const { query, apiMessages } = req.body;
 
     try {
         const chat = new Chat();
@@ -36,7 +36,7 @@ const chat = async (req, res) => {
             type: data.type,
         }));
 
-        const response = await chat.chat(query, filteredData);
+        const response = await chat.chat(apiMessages, filteredData);
         res.status(200).json(response.choices[0].message.content);
     } catch (error) {
         res.status(400).json({ msg: error.message });
