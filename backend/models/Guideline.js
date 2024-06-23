@@ -6,7 +6,7 @@ export default class Guideline {
     async createGuideline(guidelineJSON) {
         const { username, userID, title, content, source, author, banner } = guidelineJSON;
         const date = new Date();
-        await addDoc(collection(db, "guidelines"), {
+        await addDoc(collection(db, "contents"), {
             author: author,
             title: title,
             content: content,
@@ -15,14 +15,23 @@ export default class Guideline {
             source: source,
             banner: banner,
             datetime: date.toLocaleString(),
+            type: "guideline",
         });
     }
     async getGuideline(id) {
-        return await getDoc(doc(db, "guidelines", id));
+        return await getDoc(doc(db, "contents", id));
     }
     async getGuidelines() {
         const docs = [];
-        let snapshot = await getDocs(collection(db, "guidelines"));
+        let snapshot = await getDocs(query(collection(db, "contents"), where("type", "==", "guideline")));
+        snapshot.forEach((doc) => {
+            docs.push({ id: doc.id, ...doc.data() });
+        });
+        return docs;
+    }
+    async getContents() {
+        const docs = [];
+        let snapshot = await getDocs(query(collection(db, "contents")));
         snapshot.forEach((doc) => {
             docs.push({ id: doc.id, ...doc.data() });
         });

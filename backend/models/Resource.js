@@ -6,7 +6,7 @@ export default class Resource {
     async createResource(resourceJSON) {
         const { username, userID, title, content, source, author, banner } = resourceJSON;
         const date = new Date();
-        await addDoc(collection(db, "resources"), {
+        await addDoc(collection(db, "contents"), {
             author: author,
             title: title,
             content: content,
@@ -15,14 +15,23 @@ export default class Resource {
             source: source,
             banner: banner,
             datetime: date.toLocaleString(),
+            type: "resource",
         });
     }
     async getResource(id) {
-        return await getDoc(doc(db, "resources", id));
+        return await getDoc(doc(db, "contents", id));
     }
     async getResources() {
         const docs = [];
-        let snapshot = await getDocs(collection(db, "resources"));
+        let snapshot = await getDocs(query(collection(db, "contents"), where("type", "==", "resource")));
+        snapshot.forEach((doc) => {
+            docs.push({ id: doc.id, ...doc.data() });
+        });
+        return docs;
+    }
+    async getContents() {
+        const docs = [];
+        let snapshot = await getDocs(query(collection(db, "contents")));
         snapshot.forEach((doc) => {
             docs.push({ id: doc.id, ...doc.data() });
         });

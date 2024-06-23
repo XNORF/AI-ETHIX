@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createNewGuideline, createNewResource, getGuidelineData, getGuidelinesData, getResourceData, getResourcesData } from "../controllers/contentController.js";
+import { createNewGuideline, createNewResource, getGuidelineData, getGuidelinesData, getResourceData, getResourcesData, getAllContent } from "../controllers/contentController.js";
 
 const router = express.Router();
 
@@ -10,6 +10,6 @@ router.get("/guideline/:id", getGuidelineData);
 router.post("/resource/new", createNewResource);
 router.get("/resource/", getResourcesData);
 router.get("/resource/:id", getResourceData);
-router.get("/");
+router.get("/", getAllContent);
 
 export default router;

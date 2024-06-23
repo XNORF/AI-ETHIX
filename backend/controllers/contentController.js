@@ -80,4 +80,18 @@ const getResourcesData = async (req, res) => {
         res.status(400).json({ msg: error.message });
     }
 };
-export { createNewGuideline, createNewResource, getGuidelineData, getGuidelinesData, getResourceData, getResourcesData };
+
+const getAllContent = async (req, res) => {
+    try {
+        const content = new Resource();
+        const contentsData = await content.getContents();
+        if (!contentsData) {
+            res.status(404).json({ msg: "No contents found" });
+        } else {
+            res.status(200).json({ contentsData });
+        }
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+export { createNewGuideline, createNewResource, getGuidelineData, getGuidelinesData, getResourceData, getResourcesData, getAllContent };
