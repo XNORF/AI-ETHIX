@@ -11,5 +11,6 @@ router.post("/resource/new", createNewResource);
 router.get("/resource/", getResourcesData);
 router.get("/resource/:id", getResourceData);
 router.get("/", getAllContent);
+router.get("/:id", getResourceData);
 
 export default router;

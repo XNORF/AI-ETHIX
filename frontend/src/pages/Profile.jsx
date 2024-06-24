@@ -140,7 +140,7 @@ const Profile = () => {
                             </Button>
                         </Grid>
                     </Grid>
-                    ,<Grid container sx={{ mt: 1, mb: 3 }}></Grid>,
+                    <Grid container sx={{ mt: 1, mb: 3 }}></Grid>
                     <Box textAlign="center" sx={{ mb: 3 }}>
                         <Button variant="contained" sx={{ my: 1 }} onClick={handleUpdate}>
                             <Typography variant="button">Update</Typography>
