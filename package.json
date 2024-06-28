@@ -1,0 +1,16 @@
+{
+    "name": "AI-ETHIX",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "installBackend": "cd backend && npm i",
+        "installFrontend": "cd frontend && npm i",
+        "install": "npm run installBackend & npm run installFrontend",
+        "backend": "cd backend && npm run dev",
+        "frontend": "cd frontend && npm run dev"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module"
+}

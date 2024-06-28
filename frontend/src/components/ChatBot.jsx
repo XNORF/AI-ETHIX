@@ -27,17 +27,12 @@ const ChatBot = () => {
         setMessages(newMessages);
 
         // Initial system message to determine ChatGPT functionality
-        // How it responds, how it talks, etc.
         setIsTyping(true);
         await processMessageToChatGPT(newMessages);
     };
 
     async function processMessageToChatGPT(chatMessages) {
-        // messages is an array of messages
         // Format messages for chatGPT API
-        // API is expecting objects in format of { role: "user" or "assistant", "content": "message here"}
-        // So we need to reformat
-
         let apiMessages = chatMessages.map((messageObject) => {
             let role = "";
             if (messageObject.sender === "AI-ETHIX") {
@@ -48,7 +43,6 @@ const ChatBot = () => {
             return { role: role, content: messageObject.message };
         });
         const url = import.meta.env.VITE_URL;
-
         const response = await fetch(url + "chat/query", {
             method: "POST",
             headers: {
@@ -70,22 +64,6 @@ const ChatBot = () => {
         } else {
             setIsTyping(false);
         }
-        /* .then((data) => {
-                console.log(data.json());
-                return data.json();
-            })
-            .then((data) => {
-                //console.log(data);
-                setMessages([
-                    ...chatMessages,
-                    {
-                        message: data.choices[0].message.content,
-                        direction: "incoming",
-                        sender: "ChatGPT",
-                    },
-                ]);
-                setIsTyping(false);
-            }); */
     }
     //RETURN THE HTML
     return (

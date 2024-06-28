@@ -3,7 +3,6 @@ import BriefPost from "../components/BriefPost";
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthProvider";
 import { useParams, Navigate } from "react-router-dom";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const skeletonStyle = {
     height: "170px",

@@ -1,6 +1,6 @@
 import { useAuth } from "../../contexts/AuthProvider";
 import { Navigate } from "react-router-dom";
-import { Typography, Button, Box, TextField, Grid, Stack, Skeleton, Modal } from "@mui/material";
+import { Typography, Button, Box, TextField, Grid, Stack, Skeleton, Modal, Link } from "@mui/material";
 import { useState, useEffect } from "react";
 import AddContent from "../../components/AddContent";
 import AddQuiz from "../../components/AddQuiz";
@@ -71,19 +71,25 @@ const ContentManagement = () => {
                               <Grid item md={9} sm={9} sx={{ my: 3 }} id={data.id}>
                                   <Grid container id={data.id}>
                                       <Grid item md={12} sm={12} id={data.id}>
+                                          <Typography variant="subtitle1" id={data.id}>
+                                              ID: #{data.id}
+                                          </Typography>
                                           <Typography variant="h3" id={data.id}>
                                               {data.title}
                                           </Typography>
                                       </Grid>
 
                                       <Grid item md={12} sm={12} id={data.id}>
-                                          <Typography variant="body1" id={data.id}>
-                                              {data.content.length > 250 ? data.content.substr(0, 250) + "... Read more" : data.content}
+                                          <Typography variant="subtitle1" id={data.id}>
+                                              {data.content}
                                           </Typography>
                                       </Grid>
                                       <Grid item md={12} sm={12} id={data.id}>
                                           <Typography variant="subtitle1" id={data.id}>
-                                              ContentID: #{data.id}
+                                              Source:{" "}
+                                              <Link href={data.source} target="_blank">
+                                                  {data.source}
+                                              </Link>
                                           </Typography>
                                       </Grid>
                                   </Grid>

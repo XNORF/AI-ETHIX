@@ -87,11 +87,11 @@ const AddQuiz = () => {
             <Typography variant="h2">New Quiz</Typography>
             <Typography variant="h3">Question {quiz.length + 1}</Typography>
 
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={2} placeholder="Question" variant="filled" required onChange={(e) => setTitle(e.target.value)} value={title} />
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={2} placeholder="Answer 1" variant="filled" required onChange={(e) => setAnswer1(e.target.value)} value={answer1} />
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={2} placeholder="Answer 2" variant="filled" required onChange={(e) => setAnswer2(e.target.value)} value={answer2} />
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={2} placeholder="Answer 3" variant="filled" required onChange={(e) => setAnswer3(e.target.value)} value={answer3} />
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={2} placeholder="Answer 4" variant="filled" required onChange={(e) => setAnswer4(e.target.value)} value={answer4} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={1} placeholder="Question" variant="filled" required onChange={(e) => setTitle(e.target.value)} value={title} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={1} placeholder="Answer 1" variant="filled" required onChange={(e) => setAnswer1(e.target.value)} value={answer1} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={1} placeholder="Answer 2" variant="filled" required onChange={(e) => setAnswer2(e.target.value)} value={answer2} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={1} placeholder="Answer 3" variant="filled" required onChange={(e) => setAnswer3(e.target.value)} value={answer3} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={1} placeholder="Answer 4" variant="filled" required onChange={(e) => setAnswer4(e.target.value)} value={answer4} />
             <Typography variant="body1">Select Answer</Typography>
             <Select value={answer} onChange={handleSelectAnswer} sx={textFieldStyle} placeholder="Answer">
                 <MenuItem value={0}>{answer1}</MenuItem>

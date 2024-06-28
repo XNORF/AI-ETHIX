@@ -77,10 +77,10 @@ const AddContent = () => {
                 Upload Attachment
                 <input type="file" hidden accept=".png, .jpg, .jpeg" onChange={(e) => setAttachment(e.target.files[0])} />
             </Button>
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={2} placeholder="Title" variant="filled" required onChange={(e) => setTitle(e.target.value)} value={title} />
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={2} placeholder="Author" variant="filled" required onChange={(e) => setAuthor(e.target.value)} value={author} />
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={2} placeholder="Source" variant="filled" required onChange={(e) => setSource(e.target.value)} value={source} />
-            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={6} placeholder="Content" variant="filled" required onChange={(e) => setContent(e.target.value)} value={content} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={1} placeholder="Title" variant="filled" required onChange={(e) => setTitle(e.target.value)} value={title} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={1} placeholder="Author" variant="filled" required onChange={(e) => setAuthor(e.target.value)} value={author} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={1} placeholder="Source" variant="filled" required onChange={(e) => setSource(e.target.value)} value={source} />
+            <TextField sx={textFieldStyle} inputProps={{ style: { color: "aliceblue" } }} id="filled-multiline-static" multiline rows={3} placeholder="Content" variant="filled" required onChange={(e) => setContent(e.target.value)} value={content} />
             <Typography variant="body1">Content Type</Typography>
 
             <Select value={type} onChange={handleTypeChange} sx={textFieldStyle} placeholder="Type">
