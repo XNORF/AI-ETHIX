@@ -12,10 +12,10 @@ const ChatBot = () => {
         },
     ]);
     const [isTyping, setIsTyping] = useState(false);
-    const [query, setQuery] = useState("");
+    let query = "";
 
     const handleSend = async (message) => {
-        setQuery(message);
+        query = message;
         const newMessage = {
             message,
             direction: "outgoing",
@@ -28,6 +28,7 @@ const ChatBot = () => {
 
         // Initial system message to determine ChatGPT functionality
         setIsTyping(true);
+
         await processMessageToChatGPT(newMessages);
     };
 
