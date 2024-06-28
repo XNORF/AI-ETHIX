@@ -64,6 +64,7 @@ const ChatBot = () => {
             setIsTyping(false);
         } else {
             setIsTyping(false);
+            alert("Something went wrong. Please try again later");
         }
     }
     //RETURN THE HTML

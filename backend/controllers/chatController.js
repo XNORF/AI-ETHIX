@@ -18,7 +18,7 @@ const chat = async (req, res) => {
             await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 500ms
         }
 
-        if (!data || !data.data || !data.data().result || !data.data().result.ids) {
+        if (!data || !data.data() || !data.data().result || !data.data().result.ids) {
             throw new Error("Failed to retrieve data or data is incomplete");
         }
 
