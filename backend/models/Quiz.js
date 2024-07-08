@@ -19,6 +19,7 @@ export default class Quiz {
         });
         return docs;
     }
-    async updateQuiz(id, quizJSON) {}
-    async deleteQuiz(id) {}
+    async deleteQuiz(id) {
+        await deleteDoc(doc(db, "quizzes", id));
+    }
 }

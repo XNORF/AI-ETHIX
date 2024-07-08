@@ -4,8 +4,11 @@ import { getDoc, getDocs, collection, addDoc, deleteDoc, updateDoc, setDoc, doc,
 export default class Guideline {
     constructor() {}
     async createGuideline(guidelineJSON) {
-        const { username, userID, title, content, source, author, banner } = guidelineJSON;
+        let { username, userID, title, content, source, author, banner } = guidelineJSON;
         const date = new Date();
+        if (banner == "") {
+            banner = `https://media.istockphoto.com/id/1209490694/vector/valid-document-line-icon-approved-document-vector-illustration-isolated-on-white-note-with.jpg?s=612x612&w=0&k=20&c=LCxMwSIY-lo50okCzf8Z7mDqPsl__yxs3Gkr0sAh37Y=`;
+        }
         await addDoc(collection(db, "contents"), {
             author: author,
             title: title,
@@ -37,6 +40,15 @@ export default class Guideline {
         });
         return docs;
     }
-    async updateGuideline(id, guidelineJSON) {}
-    async deleteGuideline(id) {}
+    async updateGuideline(id, guidelineJSON) {
+        const date = new Date();
+        await updateDoc(doc(db, "contents", id), {
+            ...guidelineJSON,
+            datetime: date.toLocaleString(),
+            type: "guideline",
+        });
+    }
+    async deleteContent(id) {
+        await deleteDoc(doc(db, "contents", id));
+    }
 }

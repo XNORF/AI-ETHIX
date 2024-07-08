@@ -94,4 +94,39 @@ const getAllContent = async (req, res) => {
         res.status(400).json({ msg: error.message });
     }
 };
-export { createNewGuideline, createNewResource, getGuidelineData, getGuidelinesData, getResourceData, getResourcesData, getAllContent };
+
+const updateResourceData = async (req, res) => {
+    const { id } = req.params;
+    const resourceJSON = req.body;
+    try {
+        const resource = new Resource();
+        resource.updateResource(id, resourceJSON);
+        res.status(200).json({ msg: "Resource Updated" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+
+const updateGuidelineData = async (req, res) => {
+    const { id } = req.params;
+    const guidelineJSON = req.body;
+    try {
+        const guideline = new Guideline();
+        guideline.updateGuideline(id, guidelineJSON);
+        res.status(200).json({ msg: "Guideline Updated" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+
+const deleteContent = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const resource = new Resource();
+        resource.deleteContent(id);
+        res.status(200).json({ msg: "Content deleted successfully." });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+export { createNewGuideline, createNewResource, getGuidelineData, getGuidelinesData, getResourceData, getResourcesData, getAllContent, updateResourceData, updateGuidelineData, deleteContent };

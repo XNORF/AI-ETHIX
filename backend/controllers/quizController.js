@@ -37,4 +37,15 @@ const getQuizzesData = async (req, res) => {
         res.status(400).json({ msg: error.message });
     }
 };
-export { createNewQuiz, getQuizData, getQuizzesData };
+
+const deleteQuiz = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const quiz = new Quiz();
+        quiz.deleteQuiz(id);
+        res.status(200).json({ msg: "Quiz deleted successfully." });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
+export { createNewQuiz, getQuizData, getQuizzesData, deleteQuiz };

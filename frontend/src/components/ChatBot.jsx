@@ -73,9 +73,8 @@ const ChatBot = () => {
             <div style={{ position: "absolute", height: "70vh", width: "100vh", top: "50%", left: "50%", transform: "translate(-50%, -50%)", boxShadow: 24, p: 4 }}>
                 <MainContainer>
                     <ChatContainer>
-                        <MessageList scrollBehavior="smooth" typingIndicator={isTyping ? <TypingIndicator content="ChatGPT is typing" /> : null}>
+                        <MessageList scrollBehavior="smooth" typingIndicator={isTyping ? <TypingIndicator content="Chatbot is typing" /> : null}>
                             {messages.map((message, i) => {
-                                //console.log(message);
                                 return <Message key={i} model={message} />;
                             })}
                         </MessageList>

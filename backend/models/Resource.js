@@ -4,8 +4,11 @@ import { getDoc, getDocs, collection, addDoc, deleteDoc, updateDoc, setDoc, doc,
 export default class Resource {
     constructor() {}
     async createResource(resourceJSON) {
-        const { username, userID, title, content, source, author, banner } = resourceJSON;
+        let { username, userID, title, content, source, author, banner } = resourceJSON;
         const date = new Date();
+        if (banner == "") {
+            banner = `https://previews.123rf.com/images/lunaraa/lunaraa2209/lunaraa220901932/192027379-hiring-icon-vector-for-web-and-mobile-app-search-job-vacancy-sign-and-symbol-human-resources-concept.jpg`;
+        }
         await addDoc(collection(db, "contents"), {
             author: author,
             title: title,
@@ -37,6 +40,11 @@ export default class Resource {
         });
         return docs;
     }
-    async updateResource(id, resourceJSON) {}
-    async deleteResource(id) {}
+    async updateResource(id, resourceJSON) {
+        const date = new Date();
+        await updateDoc(doc(db, "contents", id), resourceJSON);
+    }
+    async deleteContent(id) {
+        await deleteDoc(doc(db, "contents", id));
+    }
 }
