@@ -41,7 +41,7 @@ const Feedback = () => {
             console.log("Error:" + JSON.stringify(json));
         }
         if (response.ok) {
-            console.log("ok");
+            alert("Feedback sent successfully");
         }
     };
 
@@ -49,6 +49,8 @@ const Feedback = () => {
         e.preventDefault();
         if (feedback != "") {
             addFeedbackDB({ username: currentUser.displayName, userID: currentUser.uid, feedback });
+        } else {
+            alert("Message is required");
         }
     };
 

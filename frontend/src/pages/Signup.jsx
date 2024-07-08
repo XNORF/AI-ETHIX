@@ -48,24 +48,29 @@ const Signup = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         if (password == confirmPassword) {
-            //FIREBASE AUTH
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((cred) => {
-                    if (cred.user != null) {
-                        updateProfile(auth.currentUser, {
-                            displayName: username,
-                            photoURL: "https://firebasestorage.googleapis.com/v0/b/ai-ethix.appspot.com/o/avatar%2Fdefault.jpg?alt=media&token=d1000949-3af6-41c3-a0df-34c5ff1c85f9",
-                        }).then(() => {
-                            sendEmailVerification(cred.user);
-                            addUserDB({ id: { ...cred.user }.uid, username, email });
-                        });
-                    }
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
+            if (password.length < 8) {
+                alert("Password is too short");
+            } else {
+                //FIREBASE AUTH
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((cred) => {
+                        if (cred.user != null) {
+                            updateProfile(auth.currentUser, {
+                                displayName: username,
+                                photoURL: "https://firebasestorage.googleapis.com/v0/b/ai-ethix.appspot.com/o/avatar%2Fdefault.jpg?alt=media&token=d1000949-3af6-41c3-a0df-34c5ff1c85f9",
+                            }).then(() => {
+                                sendEmailVerification(cred.user);
+                                addUserDB({ id: { ...cred.user }.uid, username, email });
+                            });
+                        }
+                        alert("Registration successful");
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            }
         } else {
-            console.log("Password are not the same");
+            alert("Password confirmation does not match");
         }
     };
 

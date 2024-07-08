@@ -55,28 +55,32 @@ const Profile = () => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const url = import.meta.env.VITE_URL;
-        const response = await fetch(url + "user/update/" + currentUser.uid, {
-            method: "POST",
-            body: JSON.stringify({
-                username: username,
-                type: type,
-            }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        const json = await response.json();
-        if (!response.ok) {
-            console.log("Error:" + JSON.stringify(json));
-        }
-        if (response.ok) {
-            updateProfile(auth.currentUser, {
-                displayName: username,
-            }).then(() => {
-                alert("Profile updated successfully");
-                window.location.reload();
+        if (username == "") {
+            alert("Missing username");
+        } else {
+            const url = import.meta.env.VITE_URL;
+            const response = await fetch(url + "user/update/" + currentUser.uid, {
+                method: "POST",
+                body: JSON.stringify({
+                    username: username,
+                    type: type,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
             });
+            const json = await response.json();
+            if (!response.ok) {
+                console.log("Error:" + JSON.stringify(json));
+            }
+            if (response.ok) {
+                updateProfile(auth.currentUser, {
+                    displayName: username,
+                }).then(() => {
+                    alert("Profile updated successfully");
+                    window.location.reload();
+                });
+            }
         }
     };
     const handleResetPasswords = () => {
@@ -100,6 +104,7 @@ const Profile = () => {
                     </IconButton>
                 </label>
             </Grid>
+
             <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
                 <Box sx={boxStyle}>
                     <Typography variant="h2" sx={{ mt: 2 }} align="center">
@@ -124,7 +129,7 @@ const Profile = () => {
                         </Grid>
 
                         <Grid item md={5} sm={12}>
-                            <TextField variant="standard" sx={textFieldStyle} placeholder="Your username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                            <TextField variant="standard" sx={textFieldStyle} placeholder="Your username" value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </Grid>
                     </Grid>
                     <Grid container sx={{ mt: 3 }}>
@@ -136,7 +141,7 @@ const Profile = () => {
 
                         <Grid item md={5} sm={12}>
                             <Button variant="contained" onClick={handleResetPasswords}>
-                                <Typography variant="button">Change</Typography>
+                                <Typography variant="submit">Change</Typography>
                             </Button>
                         </Grid>
                     </Grid>

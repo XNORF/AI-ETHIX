@@ -26,9 +26,13 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        signInWithEmailAndPassword(auth, email, password).catch((error) => {
-            alert(error.message);
-        });
+        signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                alert("Login successful");
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
     };
 
     const handleResetPassword = async (e) => {
@@ -77,7 +81,7 @@ const Login = () => {
                             </Grid>
 
                             <Grid item md={5} sm={12}>
-                                <TextField variant="standard" sx={textFieldStyle} placeholder="Type your password" type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
+                                <TextField variant="standard" sx={textFieldStyle} placeholder="Type your password" type="password" onChange={(e) => setPassword(e.target.value)} value={password} required />
                             </Grid>
                         </Grid>
                         <Grid container sx={{ mt: 1, mb: 3 }}>

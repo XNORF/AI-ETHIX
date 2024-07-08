@@ -100,26 +100,31 @@ const UserManagement = () => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        console.log(type);
-        console.log(username);
-        console.log(userID);
-        const url = import.meta.env.VITE_URL;
-        const response = await fetch(url + "user/update/" + userID, {
-            method: "POST",
-            body: JSON.stringify({
-                username: username,
-                type: type,
-            }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        const json = await response.json();
-        if (!response.ok) {
-            console.log("Error:" + JSON.stringify(json));
-        }
-        if (response.ok) {
-            window.location.reload();
+        if (username == "") {
+            alert("Missing username");
+        } else {
+            console.log(type);
+            console.log(username);
+            console.log(userID);
+            const url = import.meta.env.VITE_URL;
+            const response = await fetch(url + "user/update/" + userID, {
+                method: "POST",
+                body: JSON.stringify({
+                    username: username,
+                    type: type,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const json = await response.json();
+            if (!response.ok) {
+                console.log("Error:" + JSON.stringify(json));
+            }
+            if (response.ok) {
+                alert("User update successfully");
+                window.location.reload();
+            }
         }
     };
     //RETURN THE HTML
