@@ -43,41 +43,4 @@ const chat = async (req, res) => {
     }
 };
 
-/* const chat = async (req, res) => {
-    const { query } = req.body;
-
-    try {
-        const chat = new Chat();
-        let id;
-        await chat.sendQuery(query).then((ref) => {
-            id = ref.id;
-        });
-
-        //Wait until data gets embedded
-        setTimeout(async function () {
-            await chat.getData(id).then(async (data) => {
-                const queryDataPromises = [];
-                const dataIDs = data.data().result.ids;
-
-                dataIDs.forEach((id) => {
-                    const contentPromise = chat.getContents(id).then((content) => content.data());
-                    queryDataPromises.push(contentPromise);
-                });
-
-                const queryData = await Promise.all(queryDataPromises);
-
-                //Clean unnecessary data
-                const filteredData = [];
-                queryData.forEach((data) => {
-                    filteredData.push({ title: data.title, content: data.content, author: data.author, source: data.source, type: data.type });
-                });
-                const response = await chat.chat(query, filteredData);
-                res.status(200).json(response.choices[0].message.content);
-            });
-        }, 5000);
-    } catch (error) {
-        res.status(400).json({ msg: error.message });
-    }
-}; */
-
 export { chat };
